@@ -1,0 +1,6 @@
+mistral-common
+mistral-inference
+fastapi
+uvicorn
+nest-asyncio
+pyngrok
