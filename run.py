@@ -53,12 +53,12 @@ CONTENT = """
 PROMPT_SAMPLE = construct_prompt(CONTENT)
 
 # Define the API endpoint
-url = "https://242d-34-124-186-51.ngrok-free.app/chat/summary"
+url = "https://dd8f-35-240-224-34.ngrok-free.app/chat/summary"
 
 # Create the payload
 payload = {
     "messages": [{"role": "user", "content": PROMPT_SAMPLE}],
-    "model": "mistral-7B-Instruct-v0.3",
+    "model": "mistral-7b-instruct-v0.2",
     "max_tokens": 512,
     "temperature": 0.7
 }

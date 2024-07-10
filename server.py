@@ -6,11 +6,7 @@ from pyngrok import ngrok
 from pydantic import BaseModel
 from typing import List, Dict
 import os
-from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
-from mistral_common.protocol.instruct.messages import UserMessage
-from mistral_common.protocol.instruct.request import ChatCompletionRequest
-from mistral_inference.model import Transformer
-from mistral_inference.generate import generate
+from llama_cpp import Llama
 
 PROJECT_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)))
 app = FastAPI()
@@ -22,11 +18,15 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-# Load Mistral model and tokenizer
-model_name = "mistral-7B-Instruct-v0.3"
-mistral_models_path = os.path.join(PROJECT_PATH, model_name)
-tokenizer = MistralTokenizer.v3()
-model = Transformer.from_folder(mistral_models_path)
+# Load Mistral model
+
+model_name = "mistral-7b-instruct-v0.2"
+model_path = os.path.join(PROJECT_PATH, model_name+".Q4_K_M.gguf")
+model = Llama(
+    model_path=model_path,
+    n_ctx = 2048,
+    n_gpu_layers=35,
+)
 
 class Message(BaseModel):
     role: str
@@ -46,13 +46,12 @@ async def create_chat_summary(request: Request):
     # Extract the latest message from user
     user_input = request.messages[-1].content
 
-    completion_request = ChatCompletionRequest(messages=[UserMessage(content=user_input)])
-    inputs = tokenizer.encode_chat_completion(completion_request).tokens
-    outputs, _ = generate([inputs], model,
-                          max_tokens=request.max_tokens,
-                          temperature=request.temperature,
-                          eos_id=tokenizer.instruct_tokenizer.tokenizer.eos_id)
-    summary = tokenizer.decode(outputs[0])
+    output = model(
+        user_input, # Prompt
+        max_tokens=request.max_tokens,
+        temperature=request.temperature,
+    )
+    summary = output['choices'][0]['text']
 
     return {
         "choices": [{"message": {"role": "assistant", "content": summary}}]

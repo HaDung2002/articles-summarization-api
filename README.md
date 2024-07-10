@@ -6,15 +6,12 @@ This project demonstrates how to serve the Mistral 7B model, an open-source larg
 
 ```plaintext
 articles-summarization-api/
-├── mistral-7B-Instruct-v0.3/     # Pre-trained model files
-│   ├── consolidated.safetensors
-│   ├── params
-│   ├── tokenizer.model.v3
-├── README.md                     # Project documentation
-├── requirements.txt              # List of Python dependencies
-├── run.py                        # Script to construct prompt and make API request
-├── server.py                     # FastAPI server implementation
-├── summary.py                    # Function to make HTTP request to the server
+├── mistral-7b-instruct-v0.2.Q4_K_M.gguf     # Pre-trained model file
+├── README.md                                # Project documentation
+├── requirements.txt                         # List of Python dependencies
+├── run.py                                   # Script to construct prompt and make API request
+├── server.py                                # FastAPI server implementation
+├── summary.py                               # Function to make HTTP request to the server
 ```
 
 ## Prerequisites
@@ -23,7 +20,7 @@ Before running the project, ensure you have the following:
 
 1. A Google Colab account.
 2. Ngrok account and authtoken (required to expose Colab to a public URL).
-3. The Mistral 7B model files (`consolidated.safetensors`, `params`, `tokenizer.model.v3`).
+3. The Mistral 7B model GGUF file.
 
 ## Setup
 
@@ -33,9 +30,12 @@ Clone this repository to your local machine or directly to Google Colab.
 
 ### Step 2: Upload Mistral 7B model files
 
-Download the `mistral-7B-Instruct-v0.3` model or any preferred models from this [github](https://github.com/mistralai/mistral-inference?tab=readme-ov-file#model-download "github") link.
+Download the `mistral-7B-Instruct-v0.2` model using the follow commands
 
-Upload the `mistral-7B-Instruct-v0.3` directory containing the pre-trained model files to the Colab environment or to the specified path if running locally.
+```bash
+pip install huggingface-hub
+huggingface-cli download TheBloke/Mistral-7B-Instruct-v0.2-GGUF mistral-7b-instruct-v0.2.Q4_K_M.gguf --local-dir . --local-dir-use-symlinks False
+```
 
 ### Step 3: Install dependencies
 
@@ -118,7 +118,7 @@ url = "https://<public-url-from-ngrok>/chat/summary"
 # Create the payload
 payload = {
     "messages": [{"role": "user", "content": PROMPT_SAMPLE}],
-    "model": "mistral-7B-Instruct-v0.3",
+    "model": "mistral-7b-instruct-v0.2",
     "max_tokens": 512,
     "temperature": 0.7
 }
@@ -145,6 +145,6 @@ Feel free to fork this repository and create pull requests to contribute. For ma
 
 ## Acknowledgments
 
-- [MistralAI](https://github.com/mistralai/mistral-inference?tab=readme-ov-file#model-download) for providing the Mistral 7B model.
+- [MistralAI](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) for providing the Mistral 7B GGUF model.
 - [FastAPI](https://fastapi.tiangolo.com/) for the web framework.
 - [Ngrok](https://ngrok.com/) for the tunneling service.

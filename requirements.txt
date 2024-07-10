@@ -1,5 +1,4 @@
-mistral-common
-mistral-inference
+llama-cpp-python
 fastapi
 uvicorn
 nest-asyncio
