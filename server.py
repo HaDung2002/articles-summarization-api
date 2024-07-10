@@ -21,7 +21,7 @@ app.add_middleware(
 # Load Mistral model
 
 model_name = "Mistral-7B-Instruct-v0.3"
-model_path = os.path.join(PROJECT_PATH, model_name+".Q4_K_M.gguf")
+model_path = os.path.join(PROJECT_PATH, model_name+"-Q4_K_M.gguf")
 model = Llama(
   model_path = model_path,
   n_ctx = 2048,
