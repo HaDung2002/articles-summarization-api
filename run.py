@@ -3,7 +3,7 @@ from summary import summary
 def construct_prompt(content):
     # Create the prompt for summarization
     prompt = f"""
-    ### Article:
+    ### 기사:
     {content}
 
     제시되는 기사 내용을 다음과 같은 조건에 맞춰 요약해줘
@@ -15,7 +15,7 @@ def construct_prompt(content):
     - 요약 내용 위에 제목을 표시해 주세요.
     - 기사 작성자를 보여주세요.
 
-    ### Summary (Korean):
+    ### 요약:
     """
     return prompt
 
@@ -53,7 +53,7 @@ CONTENT = """
 PROMPT_SAMPLE = construct_prompt(CONTENT)
 
 # Define the API endpoint
-url = "https://5f28-34-87-173-149.ngrok-free.app/chat/summary"
+url = "https://0894-34-124-183-157.ngrok-free.app/chat/summary"
 
 # Create the payload
 payload = {
