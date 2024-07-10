@@ -61,7 +61,6 @@ pip install -r requirements.txt
 Download the `bartowski/Mistral-7B-Instruct-v0.3-GGUF` model using the follow commands
 
 ```bash
-pip install huggingface-hub
 huggingface-cli download bartowski/Mistral-7B-Instruct-v0.3-GGUF --include "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --local-dir . --local-dir-use-symlinks False
 ```
 
