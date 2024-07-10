@@ -20,12 +20,13 @@ app.add_middleware(
 
 # Load Mistral model
 
-model_name = "mistral-7b-instruct-v0.2"
+model_name = "Mistral-7B-Instruct-v0.3"
 model_path = os.path.join(PROJECT_PATH, model_name+".Q4_K_M.gguf")
 model = Llama(
-    model_path=model_path,
-    n_ctx = 2048,
-    n_gpu_layers=35,
+  model_path = model_path,
+  n_ctx = 2048,
+  n_gpu_layers=35,
+  add_eos_token=True,
 )
 
 class Message(BaseModel):
@@ -50,6 +51,7 @@ async def create_chat_summary(request: Request):
         user_input, # Prompt
         max_tokens=request.max_tokens,
         temperature=request.temperature,
+        stop=["</s>"],
     )
     summary = output['choices'][0]['text']
 

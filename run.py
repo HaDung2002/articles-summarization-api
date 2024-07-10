@@ -58,8 +58,8 @@ url = "https://dd8f-35-240-224-34.ngrok-free.app/chat/summary"
 # Create the payload
 payload = {
     "messages": [{"role": "user", "content": PROMPT_SAMPLE}],
-    "model": "mistral-7b-instruct-v0.2",
-    "max_tokens": 512,
+    "model": "Mistral-7B-Instruct-v0.3",
+    "max_tokens": 1024,
     "temperature": 0.7
 }
 

@@ -6,7 +6,7 @@ This project demonstrates how to serve the Mistral 7B model, an open-source larg
 
 ```plaintext
 articles-summarization-api/
-├── mistral-7b-instruct-v0.2.Q4_K_M.gguf     # Pre-trained model file
+├── Mistral-7B-Instruct-v0.3-Q4_K_M.gguf     # Pre-trained model file
 ├── README.md                                # Project documentation
 ├── requirements.txt                         # List of Python dependencies
 ├── run.py                                   # Script to construct prompt and make API request
@@ -28,13 +28,13 @@ Before running the project, ensure you have the following:
 
 Clone this repository to your local machine or directly to Google Colab.
 
-### Step 2: Upload Mistral 7B model files
+### Step 2: Download Mistral 7B model file
 
-Download the `mistral-7B-Instruct-v0.2` model using the follow commands
+Download the `MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF` model using the follow commands
 
 ```bash
 pip install huggingface-hub
-huggingface-cli download TheBloke/Mistral-7B-Instruct-v0.2-GGUF mistral-7b-instruct-v0.2.Q4_K_M.gguf --local-dir . --local-dir-use-symlinks False
+huggingface-cli download bartowski/Mistral-7B-Instruct-v0.3-GGUF --include "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --local-dir . --local-dir-use-symlinks False
 ```
 
 ### Step 3: Install dependencies
@@ -118,8 +118,8 @@ url = "https://<public-url-from-ngrok>/chat/summary"
 # Create the payload
 payload = {
     "messages": [{"role": "user", "content": PROMPT_SAMPLE}],
-    "model": "mistral-7b-instruct-v0.2",
-    "max_tokens": 512,
+    "model": "Mistral-7B-Instruct-v0.3",
+    "max_tokens": 1024,
     "temperature": 0.7
 }
 
@@ -135,7 +135,7 @@ summary(url, payload, headers)
 
 ## Troubleshooting
 
-- **Model Not Loading**: Ensure the Mistral model files are correctly placed and paths are set properly.
+- **Model Not Loading**: Ensure the Mistral model GGUF file are correctly placed and paths are set properly.
 - **Ngrok Connection Issues**: Verify your authtoken and network connection. Ensure no firewall is blocking Ngrok.
 - **Dependencies Issues**: Check if all dependencies in `requirements.txt` are installed. Re-run the pip install command if needed.
 
@@ -145,6 +145,6 @@ Feel free to fork this repository and create pull requests to contribute. For ma
 
 ## Acknowledgments
 
-- [MistralAI](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) for providing the Mistral 7B GGUF model.
+- [bartowski](https://huggingface.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF) for providing the Mistral 7B GGUF model.
 - [FastAPI](https://fastapi.tiangolo.com/) for the web framework.
 - [Ngrok](https://ngrok.com/) for the tunneling service.
