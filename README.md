@@ -88,6 +88,8 @@ This will print a public URL where the server is accessible, for example:
 Public URL: https://<random-string>.ngrok-free.app
 ```
 
+Look for the Google Colab demo at file `demo.ipynb`.
+
 ### Step 6: Test the Summarization
 
 1. Use the `run.py` script to send a summarization request. Update the `construct_prompt` function and `CONTENT` variable with your specific data, and replace the placeholder URL with the public URL provided by Ngrok.
@@ -151,6 +153,10 @@ summary(url, payload, headers)
 ```
 
 2. Run `run.py` to make a summarization request and view the response.
+
+```bash
+python run.py
+```
 
 ## Troubleshooting
 
