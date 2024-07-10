@@ -28,9 +28,9 @@ Before running the project, ensure you have the following:
 
 Clone this repository to your local machine or directly to Google Colab.
 
-### Step 2: Upload Mistral 7B model files
+### Step 2: Download Mistral 7B model file
 
-Download the `mistral-7B-Instruct-v0.2` model using the follow commands
+Download the `mistral-7b-instruct-v0.2.Q4_K_M.gguf` model using the follow commands
 
 ```bash
 pip install huggingface-hub
@@ -135,7 +135,7 @@ summary(url, payload, headers)
 
 ## Troubleshooting
 
-- **Model Not Loading**: Ensure the Mistral model files are correctly placed and paths are set properly.
+- **Model Not Loading**: Ensure the Mistral model GGUF file are correctly placed and paths are set properly.
 - **Ngrok Connection Issues**: Verify your authtoken and network connection. Ensure no firewall is blocking Ngrok.
 - **Dependencies Issues**: Check if all dependencies in `requirements.txt` are installed. Re-run the pip install command if needed.
 
@@ -145,6 +145,6 @@ Feel free to fork this repository and create pull requests to contribute. For ma
 
 ## Acknowledgments
 
-- [MistralAI](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) for providing the Mistral 7B GGUF model.
+- [TheBlokeAI](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) for providing the Mistral 7B GGUF model.
 - [FastAPI](https://fastapi.tiangolo.com/) for the web framework.
 - [Ngrok](https://ngrok.com/) for the tunneling service.
