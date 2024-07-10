@@ -28,21 +28,41 @@ Before running the project, ensure you have the following:
 
 Clone this repository to your local machine or directly to Google Colab.
 
-### Step 2: Download Mistral 7B model file
+### Step 2: Install key libraries
+
+Install llama-cpp-python with CUBLAS, compatible to your CUDA version
+
+```bash
+set LLAMA_CUBLAS=1
+set CMAKE_ARGS=-DLLAMA_CUBLAS=on
+set FORCE_CMAKE=1
+```
+
+Install llama-cpp-python, cuda-enabled package
+
+```bash
+python -m pip install llama-cpp-python==0.2.7 --prefer-binary --extra-index-url=https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu122
+```
+
+Install pytorch-related, cuda-enabled package
+
+```bash
+pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cu121
+```
+
+Install the other required Python packages listed in `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Download Mistral 7B model file
 
 Download the `bartowski/Mistral-7B-Instruct-v0.3-GGUF` model using the follow commands
 
 ```bash
 pip install huggingface-hub
 huggingface-cli download bartowski/Mistral-7B-Instruct-v0.3-GGUF --include "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --local-dir . --local-dir-use-symlinks False
-```
-
-### Step 3: Install dependencies
-
-Install the required Python packages listed in `requirements.txt`. You can do this using pip:
-
-```bash
-pip install -r requirements.txt
 ```
 
 ### Step 4: Set up Ngrok
@@ -91,7 +111,7 @@ def construct_prompt(content):
     - 요약 내용 위에 제목을 표시해 주세요.
     - 기사 작성자를 보여주세요.
 
-    ### Summary (Korean):
+    ### Summary:
     """
     return prompt
 

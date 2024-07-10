@@ -53,7 +53,7 @@ CONTENT = """
 PROMPT_SAMPLE = construct_prompt(CONTENT)
 
 # Define the API endpoint
-url = "https://dd8f-35-240-224-34.ngrok-free.app/chat/summary"
+url = "https://5f28-34-87-173-149.ngrok-free.app/chat/summary"
 
 # Create the payload
 payload = {
